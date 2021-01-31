@@ -1,26 +1,30 @@
 import React from 'react'
+import personService from "../services/persons"
 
 const PersonForm = (props) => {
-    const { persons, setPersons, newName, newPhone, setNewName, setNewPhone, handleNameChange, handlePhoneChange } = props
+    const { persons, setPersons, newName, newNumber, setNewName, setNewNumber, handleNameChange, handleNumberChange } = props
     const addName = (event) => {
         event.preventDefault()
-        const nameObject = [
-        { 
+        const nameObject = {
             name: newName,
-            phone: newPhone,
+            number: newNumber,
         }
-        ]
         const dublicates = (person) => person.name === newName
     
         if (persons.some(dublicates)) {
-        alert(`${newName} is already added to phonebook`)
-        setNewName('')
-        setNewPhone('')
-        return
+          alert(`${newName} is already in the phonebook`)
+          setNewName('')
+          setNewNumber('')
+          return
         }
-        setPersons(persons.concat(nameObject))
-        setNewName('')
-        setNewPhone('')
+        personService
+          .create(nameObject)
+          .then(response => {
+            console.log(response)
+            setPersons(persons.concat(response))
+            setNewName('')
+            setNewNumber('')
+          })
     }
     return (
         <form onSubmit={addName}>
@@ -29,9 +33,9 @@ const PersonForm = (props) => {
                   value={newName}
                   onChange={handleNameChange}
                 />
-            phone: <input
-                value={newPhone}
-                onChange={handlePhoneChange}
+            number: <input
+                value={newNumber}
+                onChange={handleNumberChange}
                 />
         </div>
         <div>
