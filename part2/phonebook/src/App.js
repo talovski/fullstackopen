@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Filter from './components/Filter'
-import PersonForm from './components/PersonForm'
+import AddPerson from './components/AddPerson'
 import Persons from './components/Persons'
 import personService from "./services/persons"
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
+  const [ newName, setNewName ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
+  const [ filter, setFilter ] = useState('')
 
+  // get persons from db
   useEffect(() => {
     personService
       .getAll()
@@ -14,10 +18,6 @@ const App = () => {
         setPersons(response)
       })
   }, [])
-
-  const [ newName, setNewName ] = useState('')
-  const [ newNumber, setNewNumber ] = useState('')
-  const [ filter, setFilter ] = useState('')
   
   const handleNameChange = (event) => {
     setNewName(event.target.value)
@@ -30,7 +30,7 @@ const App = () => {
   }
   
   const peopleToShow = persons.filter((person) => 
-  person.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+  person.name.toLowerCase().includes(filter.toLocaleLowerCase()))
 
   return (
     <div>
@@ -39,13 +39,13 @@ const App = () => {
         filter={filter}
         handleFilterChange={handleFilterChange}/>
       <h3>Add new</h3>
-      <PersonForm 
+      <AddPerson 
         persons={persons}
         setPersons={setPersons}
         newName={newName}
         newNumber={newNumber}
         setNewName={setNewName}
-        setnewNumber={setNewNumber}
+        setNewNumber={setNewNumber}
         handleNameChange={handleNameChange}
         handleNumberChange={handleNumberChange}
       />

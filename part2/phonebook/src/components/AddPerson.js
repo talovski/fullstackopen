@@ -1,30 +1,40 @@
 import React from 'react'
 import personService from "../services/persons"
 
-const PersonForm = (props) => {
+const AddPerson = (props) => {
     const { persons, setPersons, newName, newNumber, setNewName, setNewNumber, handleNameChange, handleNumberChange } = props
+    
     const addName = (event) => {
         event.preventDefault()
         const nameObject = {
             name: newName,
             number: newNumber,
         }
-        const dublicates = (person) => person.name === newName
-    
+        const dublicates = ((person) => person.name === newName)
         if (persons.some(dublicates)) {
-          alert(`${newName} is already in the phonebook`)
-          setNewName('')
-          setNewNumber('')
-          return
-        }
+          const confirmationMessage = `${newName} is already in the phonebook. Wanna change?`
+          if (window.confirm(confirmationMessage)) {
+            const personToChange = persons.find(person => person.name === newName)
+            const id = personToChange.id
+            const personChanged = {...personToChange, number: newNumber}
+            personService
+              .update(id, personChanged)
+              .then((response => {
+                setPersons(persons.map(person => person.id !== id ? person : response)
+                )
+              }))
+          }
+          setNewName("")
+          setNewNumber("")
+        } else {
         personService
           .create(nameObject)
           .then(response => {
-            console.log(response)
             setPersons(persons.concat(response))
-            setNewName('')
-            setNewNumber('')
+            setNewName("")
+            setNewNumber("")
           })
+        }
     }
     return (
         <form onSubmit={addName}>
@@ -45,4 +55,4 @@ const PersonForm = (props) => {
   )
   
 }
-  export default PersonForm
+  export default AddPerson;

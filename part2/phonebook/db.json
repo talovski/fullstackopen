@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "040-123456",
+      "number": "234345-987",
       "id": 1
     },
     {
@@ -21,29 +21,19 @@
       "id": 4
     },
     {
-      "name": "Nika T",
-      "number": "040-123456",
+      "name": "Abigail Thorn",
+      "number": "048-39375",
       "id": 5
     },
     {
-      "name": "Bela T",
-      "number": "39-44-5323523",
+      "name": "Harris Brewis",
+      "number": "39-44-533883523",
       "id": 6
     },
     {
-      "name": "Jane Doe",
+      "name": "Natalie Wynn",
       "number": "12-43-234345",
       "id": 7
-    },
-    {
-      "name": "Mary P",
-      "number": "39-23-6423122",
-      "id": 8
-    },
-    {
-      "name": "Natalie Wynn",
-      "number": "040-123456",
-      "id": 9
     }
   ]
 }
