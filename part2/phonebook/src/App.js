@@ -1,48 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import Filter from './components/Filter'
-import AddPerson from './components/AddPerson'
-import Persons from './components/Persons'
-import personService from "./services/persons"
-import Notification from "./components/Notification"
+import React, { useEffect, useState } from "react";
+import Filter from "./components/Filter";
+import AddPerson from "./components/AddPerson";
+import Persons from "./components/Persons";
+import personService from "./services/persons";
+import Notification from "./components/Notification";
 
 const App = () => {
-  const [ persons, setPersons ] = useState([]) 
-  const [ newName, setNewName ] = useState("")
-  const [ newNumber, setNewNumber ] = useState("")
-  const [ filter, setFilter ] = useState("")
-  const [ notification, setNotification] = useState("")
+  const [persons, setPersons] = useState([]);
+  const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
+  const [filter, setFilter] = useState("");
+  const [notification, setNotification] = useState("");
 
   // get persons from db
   useEffect(() => {
-    personService
-      .getAll()
-      .then(response => {
-        setPersons(response)
-      })
-  }, [])
-  
+    personService.getAll().then((response) => {
+      setPersons(response);
+    });
+  }, []);
+
   const handleNameChange = (event) => {
-    setNewName(event.target.value)
-  }
+    setNewName(event.target.value);
+  };
   const handleNumberChange = (event) => {
-    setNewNumber(event.target.value)
-  }
+    setNewNumber(event.target.value);
+  };
   const handleFilterChange = (event) => {
-    setFilter(event.target.value)
-  }
-  
-  const peopleToShow = persons.filter((person) => 
-  person.name.toLowerCase().includes(filter.toLocaleLowerCase()))
+    setFilter(event.target.value);
+  };
+
+  const peopleToShow = persons.filter((person) =>
+    person.name.toLowerCase().includes(filter.toLocaleLowerCase())
+  );
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={notification}/>
-      <Filter
-        filter={filter}
-        handleFilterChange={handleFilterChange}/>
+      <Notification message={notification} />
+      <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <h3>Add new</h3>
-      <AddPerson 
+      <AddPerson
         persons={persons}
         setPersons={setPersons}
         newName={newName}
@@ -55,14 +52,14 @@ const App = () => {
         setNotification={setNotification}
       />
       <h2>Numbers</h2>
-       <Persons
+      <Persons
         peopleToShow={peopleToShow}
         setPersons={setPersons}
         persons={persons}
         setNotification={setNotification}
       />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
