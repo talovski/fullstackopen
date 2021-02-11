@@ -30,7 +30,7 @@ const App = () => {
   };
 
   const peopleToShow = persons.filter((person) =>
-    person.name.toLowerCase().includes(filter.toLocaleLowerCase())
+    person.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
