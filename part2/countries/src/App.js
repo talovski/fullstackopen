@@ -17,10 +17,7 @@ const App = () => {
   }
   useEffect(hook, [])
   
-  const handleSearchChange = (event) => {
-    console.log(event.target.value)
-    setSearch(event.target.value)
-  }
+  const handleSearchChange = e => setSearch(e.target.value)
 
   const countriesToShow = countries.filter(country =>
     country.name.toLowerCase().includes(search.toLowerCase()))

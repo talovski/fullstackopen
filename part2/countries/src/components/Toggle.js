@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
-import CountryInfoList from './CountryInfoList'
-
+import CountryInfo from './CountryInfo'
 
 const Toggle = ({ country }) => {
-    const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(true)
+  
+  const infoToShow = toggle
+    ? <div></div>
+    : <CountryInfo country={country}/>
 
-    const infoToShow = toggle
-        ? <div></div>
-        : <CountryInfoList country={country}/>
-
-    return (
-        <>
-            <button onClick={() =>
-            setToggle(!toggle)}>show {toggle ? 'more' : 'less'}</button>
-            {infoToShow}
-        </>
-    )
+  return (
+    <>
+      <button onClick={() =>
+      setToggle(!toggle)}>show {toggle ? 'more' : 'less'}</button>
+      {infoToShow}
+      </>
+  )
 }
 
 export default Toggle

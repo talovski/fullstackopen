@@ -19,15 +19,9 @@ const App = () => {
     });
   }, []);
 
-  const handleNameChange = (event) => {
-    setNewName(event.target.value);
-  };
-  const handleNumberChange = (event) => {
-    setNewNumber(event.target.value);
-  };
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
-  };
+  const handleNameChange = e => setNewName(e.target.value)
+  const handleNumberChange = e => setNewNumber(e.target.value)
+  const handleFilterChange = e => setFilter(e.target.value)
 
   const peopleToShow = persons.filter((person) =>
     person.name.toLowerCase().includes(filter.toLowerCase())
