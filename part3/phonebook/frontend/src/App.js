@@ -26,7 +26,7 @@ const App = () => {
   const peopleToShow = persons.filter((person) =>
     person.name.toLowerCase().includes(filter.toLowerCase())
   );
-
+  console.log('peopleToShow', peopleToShow)
   return (
     <div>
       <h2>Phonebook</h2>

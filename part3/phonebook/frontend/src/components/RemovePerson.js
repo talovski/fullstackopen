@@ -2,8 +2,9 @@ import React from "react";
 import personService from "../services/persons";
 
 const RemovePerson = ({ person, setPersons, persons, setNotification }) => {
-  const { name } = person;
-  const { id } = person;
+  const name = person.name;
+  const id = person.id
+  console.log('Message from RemovePerson', person.id)
   const message = `Are you sure you want to delete ${name} from the phonebook?`;
   const remove = () => {
     if (window.confirm(message)) {

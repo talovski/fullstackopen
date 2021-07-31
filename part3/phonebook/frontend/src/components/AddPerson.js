@@ -20,6 +20,10 @@ const AddPerson = (props) => {
       name: newName,
       number: newNumber,
     };
+    if (persons.name === undefined && persons.number === undefined) {
+      return (window.alert('Please, add name and number'))
+    }
+
     const dublicates = (person) => person.name === newName;
     if (persons.some(dublicates)) {
       const confirmationMessage = `${newName} is already in the phonebook. Wanna change?`;
@@ -28,6 +32,7 @@ const AddPerson = (props) => {
           (person) => person.name === newName
         );
         const id = personToChange.id;
+        console.log('Message from AddPerson', id)
         const personChanged = { ...personToChange, number: newNumber };
         personService.update(id, personChanged).then((response) => {
           setPersons(

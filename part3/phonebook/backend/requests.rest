@@ -1,0 +1,16 @@
+GET http://localhost:3001/api/persons/
+
+###
+GET http://localhost:3001/api/persons/6104a43c9f4bbe680fd5c650
+
+###
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+  "name": "LLLLLL",
+  "number": "asasas"
+}
+
+###
+DELETE http://localhost:3001/api/persons/6104a8c1d5017d694bbeb559
